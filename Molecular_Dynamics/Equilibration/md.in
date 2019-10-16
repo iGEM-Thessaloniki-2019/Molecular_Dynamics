@@ -1,0 +1,27 @@
+System: 100ps MD
+ &cntrl
+  imin = 0,					
+# The value 0 turns off the minimization 
+  irest = 1, ntx = 7,				
+# We are generating random initial velocities from a Boltzmann distribution and only read in the coordinates from the rst7. This is the first stage of our molecular dynamics. Later we will change these values to indicate that we want to restart a molecular dynamics run from where we left off. 
+  ntb = 2, pres0 = 1.0, ntp = 1, taup = 2.0,	
+# Use constant pressure periodic boundary (ntb) with an average pressure of 1 atm (pres0). Specify isotropic position to maintain the pressure (NTP=1) and a relaxation time of 2 ps should be used (TAUP=2.0). 
+  cut = 10.0, 					
+# Use a cutoff of 10 angstroms. More than that distance the atom-atom interactions are ignored. 
+  ntr = 0,					
+# Specify that no positional restrains will be used. 
+  ntc = 2, ntf = 2,				
+# SHAKE should be turned on and used to constrain bonds involving hydrogen.	
+  tempi = 310.0, temp0 = 310.0,			
+# Initial and final temperautre is 310. 
+  ntt = 3,					
+# Specifying the Langevin dynamics to control the temperature.
+  gamma_ln = 1.0,				
+# Specify a collision frequency of 1.0 ps-1 for the temperature control. 
+  nstlim = 50000000, dt = 0.002,		
+# Run a total of nstlim steps with a freqency of dt ps per step 
+  ntpr = 100, ntwx = 100, ntwr = 1000		
+# Write to the output file every ntpr steps, to the trajectory file every ntwx steps and to the restart file every ntwr steps. The restore file will be used in case of a crash.
+  ig=-1						
+# Automatically change the random seed number.
+ /
