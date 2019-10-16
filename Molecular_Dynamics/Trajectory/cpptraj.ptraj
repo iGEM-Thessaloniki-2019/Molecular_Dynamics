@@ -1,0 +1,7 @@
+trajin ../Equilibration/md1.nc
+trajin ../Heat/heat_md.nc
+trajout allmd.nc
+
+center :1-586
+autoimage
+go

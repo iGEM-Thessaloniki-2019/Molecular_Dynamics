@@ -1,0 +1,3 @@
+trajin ../Heat/heat_md.nc						# The first frames of the trajectory
+trajin ../Equilibration/md1.nc						# The following frames of the trajectory
+rms first out OUT_backbone.rms.in @P,O3',O5',C3',C4',C5' time 0.2	# rms defines that RSMD will be calculated. After out the name of the output file is specified. After "in" the atoms for which RMSD is calculated are specified.   

@@ -1,0 +1,16 @@
+1RAM water ions: initial minimization whole system
+ &cntrl
+  imin   = 1,		
+# Assign a minimiziation job to sander 
+  maxcyc = 10000,	
+# The minimizations steps will be 10000 with a period of 0.001 ps/step
+  ncyc   = 1000,	
+# The step at which sander changes the minimization algorithm from steepest descent to conjugate gradient
+  ntb    = 1,		
+# Indicate that the system is periodic as we use constant volume periodic boundaries
+  ntr    = 0,		
+# Indicate that no position restraints will be used. As a result all atoms are under minimization.
+  cut    = 10.0		
+# Use a cutoff of 10 angstroms. The interactions between two atoms with distance greater than the cut off are ignored.
+ /
+# Indicate the end of cntrl
