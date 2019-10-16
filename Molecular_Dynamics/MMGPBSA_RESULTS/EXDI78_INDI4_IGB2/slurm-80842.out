@@ -1,0 +1,36 @@
+load amber 18 (PATH AMBERHOME) 
+Κυρ 13 Οκτ 2019 12:56:23 πμ EEST
+Loading and checking parameter files for compatibility...
+mmpbsa_py_energy found! Using /mnt/apps/prebuilt/amber/18/bin/mmpbsa_py_energy
+cpptraj found! Using /mnt/apps/prebuilt/amber/18/bin/cpptraj
+Preparing trajectories for simulation...
+626 frames were processed by cpptraj for use in calculation.
+
+Running calculations on normal system...
+
+Beginning GB calculations with /mnt/apps/prebuilt/amber/18/bin/mmpbsa_py_energy
+  calculating complex contribution...
+  calculating receptor contribution...
+  calculating ligand contribution...
+
+Beginning PB calculations with /mnt/apps/prebuilt/amber/18/bin/mmpbsa_py_energy
+  calculating complex contribution...
+  calculating receptor contribution...
+  calculating ligand contribution...
+
+Timing:
+Total setup time:                           0.001 hr.
+Creating trajectories with cpptraj:         0.013 hr.
+Total calculation time:                     1.585 hr.
+
+Total GB calculation time:                  0.074 hr.
+Total PB calculation time:                  1.426 hr.
+
+Statistics calculation & output writing:    0.000 hr.
+Total time taken:                           1.599 hr.
+
+
+MMPBSA.py Finished! Thank you for using. Please cite us if you publish this work with this paper:
+   Miller III, B. R., McGee Jr., T. D., Swails, J. M. Homeyer, N. Gohlke, H. and Roitberg, A. E.
+   J. Chem. Theory Comput., 2012, 8 (9) pp 3314--3321
+Κυρ 13 Οκτ 2019 02:32:25 πμ EEST
