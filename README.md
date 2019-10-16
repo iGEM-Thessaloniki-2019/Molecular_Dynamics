@@ -60,3 +60,46 @@ $ tleap									# Open tleap
 ```
 
 
+
+
+
+
+####Minimization of Water and Ions
+##After creating the min.in file
+$ $AMBERHOME/bin/pmemd.cuda -O -i ./Minimization/min.in -o ./Minimization/min1.out -p TOP_solveted.prmtop -c CORD_solvated.rst7 -r ./Minimization/solute_min.ncrst -ref CORD_solvated.rst7
+
+####Minimization of the whole system
+###After creating the sysmin.in file
+$ $AMBERHOME/bin/pmemd.cuda -O -i ./SystemMinimization/sysmin.in -o ./SystemMinimization/sysmin1.out -p TOP_solveted.prmtop -c ./Minimization/solute_min.ncrst -r ./SystemMinimization/system_min2.ncrst 
+
+####Heat of Water and Ions
+$ $AMBERHOME/bin/pmemd.cuda -O -i ./Heat/heat.in -o ./Heat/heat1.out -p TOP_solveted.prmtop -c ./Minimization/solute_min.ncrst -r ./Heat/heat1.ncrst -x ./Heat/heat_md.nc -ref ./Minimization/solute_min.ncrst
+
+####MD Equilibration of whole System
+$ $AMBERHOME/bin/pmemd.cuda -O -i ./Equilibration/md.in -o ./Equilibration/md1.out -p TOP_solveted.prmtop -c ./Heat/heat1.ncrst -r ./Equilibration/md1.ncrst -x ./Equilibration/md1.nc
+
+####Analysis
+$ cd analysis
+$ $AMBERHOME/bin/process_mdout.perl ../Heat/heat1.out ../Equilibration/md1.out 
+
+$ xmgrace summary.EPTOT summary.EKTOT summary.ETOT 
+$ xmgrace summary.TEMP 
+$ xmgrace summary.PRES 
+## after deleting emty lines of summary.VOLUME
+$ xmgrace summary.VOLUME
+## after deleting emty lines of summary.DENSITY
+$ xmgrace summary.DENSITY
+
+####RMSD
+$ $AMBERHOME/bin/cpptraj -p ../TOP_solveted.prmtop -i rms.in
+
+$ xmgrace OUT_backbone.rms.in
+
+####Merge all trajectory files. 
+$ cd Trajectory 
+$ $AMBERHOME/bin/cpptraj -p ../TOP_solveted.prmtop -i cpptraj.ptraj
+
+####MM-GB/PB-SA
+$ cd MM_GB_PB_SA
+$ $AMBERHOME/bin/MMPBSA.py -O -i mmgbsa.in -o FINAL_RESULTS_MMPBSA.dat -sp ../TOP_solveted.prmtop -cp ../complex/TOP_cmplx.prmtop -rp ../protein-recepotor/TOP_protein.prmtop -lp ../DNA-ligand/TOP_DNA.prmtop -y ../Trajectory/*.nc
+
