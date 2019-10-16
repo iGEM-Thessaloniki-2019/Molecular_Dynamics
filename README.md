@@ -59,30 +59,39 @@ $ tleap									# Open tleap
 
 ```
 
-
-
-
-
-
 ### Minimization of Water and Ions
 
-In order to specify the minimization parameters, a file names min.in is created. The format of the file 
+Before minimizing all the system is suggested to minimize the water and the ions first.
+
+In order to specify the minimization parameters, a file names min.in is created. The format of the file and the input file for our simulation can be found in "Molecular_Dynamics/Minimization/" . The minimization is performed with the following command: 
+```
 $ $AMBERHOME/bin/pmemd.cuda -O -i ./Minimization/min.in -o ./Minimization/min1.out -p TOP_solveted.prmtop -c CORD_solvated.rst7 -r ./Minimization/solute_min.ncrst -ref CORD_solvated.rst7
+```
 
 ### Minimization of the whole system
-After creating the sysmin.in file
+
+In order to specify the minimization parameters, a file names sysmin.in is created. The format of the file and the input file for our simulation can be found in "Molecular_Dynamics/SystemMinimization/" . The minimization is performed with the following command: 
+```
 $ $AMBERHOME/bin/pmemd.cuda -O -i ./SystemMinimization/sysmin.in -o ./SystemMinimization/sysmin1.out -p TOP_solveted.prmtop -c ./Minimization/solute_min.ncrst -r ./SystemMinimization/system_min2.ncrst 
+```
+### Heat of Water and Ions
 
-###Heat of Water and Ions
+Thesystem has to heat up at the desired temperature with a method that will equally distribute the heat. The heating is performed with the following command: 
+```
 $ $ AMBERHOME/bin/pmemd.cuda -O -i ./Heat/heat.in -o ./Heat/heat1.out -p TOP_solveted.prmtop -c ./Minimization/solute_min.ncrst -r ./Heat/heat1.ncrst -x ./Heat/heat_md.nc -ref ./Minimization/solute_min.ncrst
-
+```
 ### MD Equilibration of whole System
+Now the system is ready for equilibration. From this point we only observe if the system has reached equilibrium. The production of this part of the trajectory is done with the following command:
+```
 $ $AMBERHOME/bin/pmemd.cuda -O -i ./Equilibration/md.in -o ./Equilibration/md1.out -p TOP_solveted.prmtop -c ./Heat/heat1.ncrst -r ./Equilibration/md1.ncrst -x ./Equilibration/md1.nc
+```
 
 ### Analysis
+In
+```
 $ cd analysis
 $ $AMBERHOME/bin/process_mdout.perl ../Heat/heat1.out ../Equilibration/md1.out 
-
+```
 $ xmgrace summary.EPTOT summary.EKTOT summary.ETOT 
 $ xmgrace summary.TEMP 
 $ xmgrace summary.PRES 
