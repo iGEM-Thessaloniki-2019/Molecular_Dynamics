@@ -1,0 +1,37 @@
+Input file for running PB and GB
+&general
+   startframe=250000,
+# The first frame where MM-PB/GB-SA is calculated 
+   endframe=375000,
+# The last frame where MM-PB/GB-SA is calculated
+   interval=200,
+   keep_files=2,
+# Keep all temporary files
+#  entropy=1,
+# Calculate entropy with the quasi-harmonic approximation.
+/
+# End of general namelist
+&gb
+# Specifications for MMGBSA, gb namelist
+  igb=2,
+# Specify the Generalized Born methodto be used. 
+  saltcon=0.100,
+# Concentration of salt in M
+/
+# End of gb namelist
+&pb
+# Specifications for MMGBSA, pb namelist
+  ipb=2,
+# Default. Dielectric model for all numerical PB procedures. Dielectric interface is implemented with level set function
+  indi=1,
+# Default. Dielectric constant of the solute region.
+  exdi=80,
+# Default. Dielectric constant of the solvent region.
+  emem=1,
+# Default. Dielectric constant of the membrane.
+  radiopt=0,
+# Use radii from the prmtop file for both the PB calculation and for the NP calculation
+  istrng=0.100,
+# Ionic strength in Molarity (probably in M).
+# pbtemp=310
+# Temperature (in K) used for the PB equation, needed to compute the Boltzmann factor for salt effects.

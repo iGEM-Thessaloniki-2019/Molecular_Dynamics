@@ -1,0 +1,24 @@
+1RAM-solute: initial minimization solvent + ions
+ &cntrl				
+# Specify the namelist used, cntrl is mandatory
+  imin   = 1,			
+# The value 1 turns on the minimization
+  maxcyc = 1000,		
+# The minimizations steps will be 1000, with a period of 0.001 ps/step
+  ncyc   = 500,			
+# The step at which sander changes the minimization algorithm from steepest descent to conjugate gradient
+  ntb    = 1,			
+# Indicate that the system is periodic as we use constant volume periodic boundaries
+  ntr    = 1,			
+# Use position restraints based on the GROUP. The GROUP is indicated with the "RES" keyword. Only the non restraind atoms are minimized
+  cut    = 10.0			
+# Use a cutoff of 10 angstroms. The interactions between two atoms with distance greater than the cut off are ignored.
+ /				
+# Indicate the end of cntrl
+Hold the DNA & P65 fixed
+500.0				
+# The force with which the atoms are constrained, in kcal/mol-A**2
+RES 1 586			
+# We are restraining atoms of residudes 1 - 586, which means all atoms other than water and ions
+END				
+END
