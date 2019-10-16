@@ -64,8 +64,9 @@ $ tleap									# Open tleap
 
 
 
-####Minimization of Water and Ions
-##After creating the min.in file
+###Minimization of Water and Ions
+
+In order to specify the minimization parameters, a file names min.in is created. The format of the file 
 $ $AMBERHOME/bin/pmemd.cuda -O -i ./Minimization/min.in -o ./Minimization/min1.out -p TOP_solveted.prmtop -c CORD_solvated.rst7 -r ./Minimization/solute_min.ncrst -ref CORD_solvated.rst7
 
 ####Minimization of the whole system
