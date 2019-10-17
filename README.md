@@ -86,7 +86,7 @@ Now the system is ready for equilibration. From this point we only observe if th
 $ $AMBERHOME/bin/pmemd.cuda -O -i ./Equilibration/md.in -o ./Equilibration/md1.out -p TOP_solveted.prmtop -c ./Heat/heat1.ncrst -r ./Equilibration/md1.ncrst -x ./Equilibration/md1.nc
 ```
 
-### Analysis
+## Analysis
 In order to check that everything is asexpected in the trajectory, we conduct analysis on different parameters of the systemn with the follwing commands.  
 ```
 $ cd analysis
@@ -113,11 +113,10 @@ The figue is dispayed with the following command.
 $ xmgrace OUT_backbone.rms.in
 ```
 
-### Merge all trajectory files. 
-$ cd Trajectory 
-$ $AMBERHOME/bin/cpptraj -p ../TOP_solveted.prmtop -i cpptraj.ptraj
-
 ### MM-GB/PB-SA
+After selecting the frames that are in equilibrium, we are calculating the binding free energy thorugh the MMGBSA and MMPBSA methods. The specifications for this calculations are declared in the mmgbsa.in file. The format of the file and the input file for the MMGBSA and MMPBSA calculations can be found in "Molecular_Dynamics/MM_GB_PB_SA/". The results from our calculations are uploaded in the directory "Molecular_Dynamics/MMGPBSA_RESULTS/". The calculations are done with the following command.
+```
 $ cd MM_GB_PB_SA
-$ $AMBERHOME/bin/MMPBSA.py -O -i mmgbsa.in -o FINAL_RESULTS_MMPBSA.dat -sp ../TOP_solveted.prmtop -cp ../complex/TOP_cmplx.prmtop -rp ../protein-recepotor/TOP_protein.prmtop -lp ../DNA-ligand/TOP_DNA.prmtop -y ../Trajectory/*.nc
-
+$ $AMBERHOME/bin/MMPBSA.py -O -i mmgbsa.in -o FINAL_RESULTS_MMPBSA.dat -sp ../TOP_solveted.prmtop -cp ../complex-no-water/TOP_cplx_noWater.prmtop -rp ../protein--no-water-recepotor/TOP_prt_noWater.prmtop -lp ../DNA-ligand/TOP_DNA.prmtop -y ../Equilibration/*.nc
+```
+In order to use the parallel computing one can use the script  
