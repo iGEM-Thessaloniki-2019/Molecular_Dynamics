@@ -119,4 +119,5 @@ After selecting the frames that are in equilibrium, we are calculating the bindi
 $ cd MM_GB_PB_SA
 $ $AMBERHOME/bin/MMPBSA.py -O -i mmgbsa.in -o FINAL_RESULTS_MMPBSA.dat -sp ../TOP_solveted.prmtop -cp ../complex-no-water/TOP_cplx_noWater.prmtop -rp ../protein--no-water-recepotor/TOP_prt_noWater.prmtop -lp ../DNA-ligand/TOP_DNA.prmtop -y ../Equilibration/*.nc
 ```
-In order to use the parallel computing one can use the script  
+In order to use the parallel computing one can use the script named GB_PB_100ns.sh in the "Molecular_Dynamics/MM_GB_PB_SA/" directory. The script is a SLURM process that uses the MMPBSA.py.MPI progamm which runs in parallel using MPI.
+
