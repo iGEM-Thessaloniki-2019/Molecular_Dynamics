@@ -87,7 +87,7 @@ $ $AMBERHOME/bin/pmemd.cuda -O -i ./Equilibration/md.in -o ./Equilibration/md1.o
 ```
 
 ### Analysis
-In
+In order to check that everything is asexpected in the trajectory, analysis on different parameters of the systemn 
 ```
 $ cd analysis
 $ $AMBERHOME/bin/process_mdout.perl ../Heat/heat1.out ../Equilibration/md1.out 
@@ -95,9 +95,13 @@ $ $AMBERHOME/bin/process_mdout.perl ../Heat/heat1.out ../Equilibration/md1.out
 $ xmgrace summary.EPTOT summary.EKTOT summary.ETOT 
 $ xmgrace summary.TEMP 
 $ xmgrace summary.PRES 
-## after deleting emty lines of summary.VOLUME
+
+after deleting emty lines of summary.VOLUME
+
 $ xmgrace summary.VOLUME
-## after deleting emty lines of summary.DENSITY
+
+after deleting emty lines of summary.DENSITY
+
 $ xmgrace summary.DENSITY
 
 ### RMSD
